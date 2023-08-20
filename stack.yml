@@ -1,0 +1,87 @@
+#
+
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+  BackupBucketDeep:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: Knox
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced # The owner oh the bucket is also the owner of the objects
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: AbortIncompleteMultipartUpload # If an object is not totally uploaded, after 2 days the part that was uploaded will be deleted
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 2
+
+  BackupBucketInstant:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ClipKiller
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced # The owner oh the bucket is also the owner of the objects
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: AbortIncompleteMultipartUpload # If an object is not totally uploaded, after 2 days the part that was uploaded will be deleted
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 2
+          - Id: NoncurrentVersionExpiration # Keep three versions of an object for thirty days
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NewerNoncurrentVersions: 3
+              NoncurrentDays: 30
+
+  BackupUserDeep:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: s3-access
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "s3:*MultipartUpload*"
+                  - "s3:ListBucket"
+                  - "s3:GetObject"
+                  - "s3:PutObject"
+                Resource:
+                  - !Sub "${BackupBucketDeep.Arn}"
+                  - !Sub "${BackupBucketDepp.Arn}/*"
+
+  BackupUserInstant:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: s3-access
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "s3:*MultipartUpload*"
+                  - "s3:ListBucket"
+                  - "s3:GetObject"
+                  - "s3:PutObject"
+                Resource:
+                  - !Sub "${BackupBucketDeep.Arn}"
+                  - !Sub "${BackupBucketDepp.Arn}/*"
