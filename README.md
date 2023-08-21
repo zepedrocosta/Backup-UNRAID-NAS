@@ -35,7 +35,7 @@ His actions include:
 
 In this [`AWS CloudFormation Template`](stack.yml) there are all the resources that need to be implemented in the AWS cloud. Includes both buckets that were mentioned previously and the IAM user.
 
-TODO: Make sure that the IAM user can upload to both buckets,
+TODO: Make sure that the IAM user can upload to both buckets to keep things simple.
 
 ## Biography
 
@@ -58,7 +58,7 @@ TODO: Make sure that the IAM user can upload to both buckets,
 - 19/08/2023
   - First scripts and planning
 
-## Autor
+## Author
 
 José Costa - Nova School of Science and Technology
 

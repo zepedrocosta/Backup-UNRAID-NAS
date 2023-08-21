@@ -14,7 +14,7 @@ Resources:
         RestrictPublicBuckets: true
       OwnershipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerEnforced # The owner oh the bucket is also the owner of the objects
+          - ObjectOwnership: BucketOwnerEnforced # The owner of the bucket is also the owner of the objects
       VersioningConfiguration:
         Status: Enabled
       LifecycleConfiguration:
@@ -35,7 +35,7 @@ Resources:
         RestrictPublicBuckets: true
       OwnershipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerEnforced # The owner oh the bucket is also the owner of the objects
+          - ObjectOwnership: BucketOwnerEnforced # The owner of the bucket is also the owner of the objects
       VersioningConfiguration:
         Status: Enabled
       LifecycleConfiguration:
@@ -50,7 +50,7 @@ Resources:
               NewerNoncurrentVersions: 3
               NoncurrentDays: 30
 
-  BackupUserDeep:
+  BackupUser:
     Type: AWS::IAM::User
     Properties:
       Policies:
@@ -67,21 +67,5 @@ Resources:
                 Resource:
                   - !Sub "${BackupBucketDeep.Arn}"
                   - !Sub "${BackupBucketDepp.Arn}/*"
-
-  BackupUserInstant:
-    Type: AWS::IAM::User
-    Properties:
-      Policies:
-        - PolicyName: s3-access
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - "s3:*MultipartUpload*"
-                  - "s3:ListBucket"
-                  - "s3:GetObject"
-                  - "s3:PutObject"
-                Resource:
-                  - !Sub "${BackupBucketDeep.Arn}"
-                  - !Sub "${BackupBucketDepp.Arn}/*"
+                  - !Sub "${BackupBucketInstant.Arn}"
+                  - !Sub "${BackupBucketInstant.Arn}/*"
