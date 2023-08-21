@@ -1,4 +1,10 @@
-#
+# AWS CloudFormation Stack that creates two buckets and a IAM user to
+# make uploads to both buckets.
+# The first bucket is intended to be used for Deep Archive files.
+# The second is for Instant Retrival files.
+
+# Based on https://github.com/m-radzikowski/aws-s3-personal-backup
+
 
 AWSTemplateFormatVersion: 2010-09-09
 
@@ -65,7 +71,7 @@ Resources:
                   - "s3:GetObject"
                   - "s3:PutObject"
                 Resource:
-                  - !Sub "${BackupBucketDeep.Arn}"
-                  - !Sub "${BackupBucketDepp.Arn}/*"
-                  - !Sub "${BackupBucketInstant.Arn}"
-                  - !Sub "${BackupBucketInstant.Arn}/*"
+                  - !Sub '${BackupBucketDeep.Arn}'
+                  - !Sub '${BackupBucketDeep.Arn}/*'
+                  - !Sub '${BackupBucketInstant.Arn}'
+                  - !Sub '${BackupBucketInstant.Arn}/*'
