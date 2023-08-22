@@ -1,5 +1,5 @@
-# AWS CloudFormation Stack that creates two buckets and a IAM user to
-# make uploads to both buckets.
+# AWS CloudFormation Stack that creates two buckets and a IAM user 
+# with permissions to make uploads to both buckets.
 # The first bucket is intended to be used for Deep Archive files.
 # The second is for Instant Retrival files.
 
@@ -12,7 +12,6 @@ Resources:
   BackupBucketDeep:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: Knox
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         IgnorePublicAcls: true
@@ -33,7 +32,6 @@ Resources:
   BackupBucketInstant:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: ClipKiller
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         IgnorePublicAcls: true

@@ -16,7 +16,7 @@ After a lot of thought I decided to use two Amazon S3 buckets.
 
 The first one (*Knox*) is for files that in case of permanent loss on my NAS I do not need to access immediately (ex. photos, videos, ISO's, ...). These files will be on a S3 Glacier Deep Archive bucket.
 
-The second bucket (*ClipKiller*) is for files that I need immediate access in case of total loss. This bucket will keep three versions of an object for thirty days. These files will be on a S3 Glacier Instant Retrieval bucket. This way is cheaper than standard S3 but I can still retrive the objects instantly.
+The second bucket (*ClipKiller*) is for files that I need immediate access in case of total loss. This bucket will keep three versions of an object for thirty days. These files will be on a S3 Glacier Flexible Retrieval bucket.
 
 Both buckets will abort incomplete files uploads after 2 days. In case I try to upload big files in multiple chunks and the process fails or is interrupted I wont be charged for the chunks that were uploaded.
 
@@ -35,8 +35,6 @@ His actions include:
 
 In this [`AWS CloudFormation Template`](stack.yml) there are all the resources that need to be implemented in the AWS cloud. Includes both buckets that were mentioned previously and the IAM user.
 
-TODO: Make sure that the IAM user can upload to both buckets to keep things simple.
-
 ## Biography
 
 - AWS Documentation
@@ -49,12 +47,21 @@ TODO: Make sure that the IAM user can upload to both buckets to keep things simp
 
 ## Timeline
 
+- 22/08/2023
+  - Test deployment using a single IAM user for both buckets.
+  - Both remotes used the same access key and secret access key for the IAM user.
+
+  ![1User2Buckets](images/testWith1UserTo2Buckets.png)
+
+  PS: The remote "InstantRetrival" used Glacier as the storage class. So the files were uploaded to Glacier Flexible Retrieval. Rclone does not have Glacier Instant Retrival.
+
 - 20/08/2023
-  - Test deployment using WSL and Rclone for a single file
+  - Test deployment using WSL and Rclone for a single file.
 
   ![WSLTest](images/WSLTestCopytos3.png)
 
   PS: The file was uploaded to Glacier Deep Archive as was specified configuring Rclone 🎆
+
 - 19/08/2023
   - First scripts and planning
 
