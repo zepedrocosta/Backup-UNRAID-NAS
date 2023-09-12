@@ -68,8 +68,8 @@ Resources:
                   - "s3:ListBucket"
                   - "s3:GetObject"
                   - "s3:PutObject"
-                Resource:
-                  - !Sub '${BackupBucketDeep.Arn}'
+                Resource: # Resources that the user can manage
+                  - !Sub '${BackupBucketDeep.Arn}' 
                   - !Sub '${BackupBucketDeep.Arn}/*'
                   - !Sub '${BackupBucketInstant.Arn}'
                   - !Sub '${BackupBucketInstant.Arn}/*'
