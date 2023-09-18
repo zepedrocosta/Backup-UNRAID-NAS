@@ -9,6 +9,8 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Resources:
+
+  #Knox
   BackupBucketDeep:
     Type: AWS::S3::Bucket
     Properties:
@@ -29,6 +31,7 @@ Resources:
             AbortIncompleteMultipartUpload:
               DaysAfterInitiation: 2
 
+  #ClipKiller
   BackupBucketInstant:
     Type: AWS::S3::Bucket
     Properties:

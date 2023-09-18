@@ -35,17 +35,26 @@ His actions include:
 
 In this [`AWS CloudFormation Template`](stack.yml) there are all the resources that need to be implemented in the AWS cloud. Includes both buckets that were mentioned previously and the IAM user.
 
+## Instalation in Unraid
+
+1. Install the Rclone and User Scripts plugins in the apps tab. Make sure you install the plugin and not the docker app.
+
+2. Create both remotes using the `rclone config` command in the terminal. In case you want to manually edit the config file you can do it in this location: `/boot/config/plugins/rclone`. There you will find the `.rclone.conf` file. I configured mine like [`this`](.rclone.conf).
+
 ## Biography
 
 - AWS Documentation
 
 - https://betterdev.blog/personal-backup-to-amazon-s3/
 
-- https://github.com/geerlingguy/my-backup-plan/tree/master
+- https://github.com/geerlingguy/my-backup-plan
 
 - https://rclone.org/s3/#configuration
 
 ## Timeline
+
+- 18/09/2023
+  - First test of sync a few folders to the Instant Retrival bucket.
 
 - 22/08/2023
   - Test deployment using a single IAM user for both buckets.
@@ -53,14 +62,12 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
   ![1User2Buckets](images/testWith1UserTo2Buckets.png)
 
-  PS: The remote "InstantRetrival" used Glacier as the storage class. So the files were uploaded to Glacier Flexible Retrieval. Rclone does not have Glacier Instant Retrival.
-
 - 20/08/2023
   - Test deployment using WSL and Rclone for a single file.
 
   ![WSLTest](images/WSLTestCopytos3.png)
 
-  PS: The file was uploaded to Glacier Deep Archive as was specified configuring Rclone 🎆
+  PS: The file was uploaded to Glacier Deep Archive as was specified configuring the remote in Rclone 🎆
 
 - 19/08/2023
   - First scripts and planning
