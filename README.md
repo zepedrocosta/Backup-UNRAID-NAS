@@ -22,7 +22,7 @@ Both buckets will abort incomplete files uploads after 2 days. In case I try to 
 
 ### IAM User
 
-I created a limited IAM user in CloudFormation with permission to upload files to the bucket.
+I created a limited IAM user in CloudFormation with permission to upload files to both buckets.
 
 His actions include:
 
@@ -39,7 +39,9 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
 1. Install the Rclone and User Scripts plugins in the apps tab. Make sure you install the plugin and not the docker app.
 
-2. Create both remotes using the `rclone config` command in the terminal. In case you want to manually edit the config file you can do it in this location: `/boot/config/plugins/rclone`. There you will find the `.rclone.conf` file. I configured mine like [`this`](.rclone.conf).
+2. Create both remotes using the `rclone config` command in the terminal. In case you want to manually edit the config file you can do it in this location: `/boot/config/plugins/rclone`. There you will find the [`rclone.conf`](.rclone.conf) file.
+
+3. Get all the directories that you want to sync to AWS
 
 ## Biography
 
@@ -52,9 +54,12 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 - https://rclone.org/s3/#configuration
 
 ## Timeline
+- 21/09/2023
+  - Sync script completed.
 
-- 18/09/2023
-  - First test of sync a few folders to the Instant Retrival bucket.
+- 19/09/2023
+  - First test of sync a few NAS folders to the Instant Retrival bucket.
+  - Password export on sync script.
 
 - 22/08/2023
   - Test deployment using a single IAM user for both buckets.
