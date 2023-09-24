@@ -41,19 +41,22 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
 2. Create both remotes using the `rclone config` command in the terminal. In case you want to manually edit the config file you can do it in this location: `/boot/config/plugins/rclone`. There you will find the [`rclone.conf`](.rclone.conf) file.
 
-3. Get all the directories that you want to sync to AWS
+3. Get all the directories that you want to sync to AWS and add them in the list.
 
-## Biography
+4. In the User Scripts plugin add a new script and set the cron job (Mine is `0 4 1/5 * *`).
 
-- AWS Documentation
+![Cron](images/Cron.png)
 
-- https://betterdev.blog/personal-backup-to-amazon-s3/
+5. In the gear next to the name click on `Edit Script` and copy the script with all the variables set up. In your encripted your rclone config you must place it in the `export RCLONE_CONFIG_PASS`.
 
-- https://github.com/geerlingguy/my-backup-plan
+6. Then click on `RUN SCRIPT` and watch it sync to AWS. :)
 
-- https://rclone.org/s3/#configuration
+![UserScripts](images/UserScripts.png)
 
 ## Timeline
+- 24/09/2023
+  - Final deployment and README complete.
+
 - 21/09/2023
   - Sync script completed.
 
@@ -76,6 +79,16 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
 - 19/08/2023
   - First scripts and planning
+
+## Biography
+
+- AWS Documentation
+
+- https://betterdev.blog/personal-backup-to-amazon-s3/
+
+- https://github.com/geerlingguy/my-backup-plan
+
+- https://rclone.org/s3/#configuration
 
 ## Author
 
