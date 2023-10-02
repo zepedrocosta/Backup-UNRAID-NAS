@@ -54,6 +54,11 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 ![UserScripts](images/UserScripts.png)
 
 ## Timeline
+- 02/10/2023
+  - New cron job for Knox (0 4 1,15 * *)
+
+![CronKnox](images/CronKnox.png)
+
 - 24/09/2023
   - Final deployment and README complete.
 
