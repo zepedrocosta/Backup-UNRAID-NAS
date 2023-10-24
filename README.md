@@ -2,14 +2,6 @@
 
 This repository contains all the scripts and the backup plan for all the files in my UNRAID NAS.
 
-The three main purposes of this backup are:
-
-- Being cheap
-
-- Functional
-
-- Simple
-
 ### S3 Buckets
 
 After a lot of thought I decided to use two Amazon S3 buckets.
@@ -43,7 +35,7 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
 3. Get all the directories that you want to sync to AWS and add them in the list.
 
-4. In the User Scripts plugin add a new script and set the cron job (Mine is `0 4 1/5 * *`).
+4. In the User Scripts plugin add a new script and set the cron job (Mine is `0 4 1/5 * *` for ClipKiller).
 
 ![Cron](images/Cron.png)
 
