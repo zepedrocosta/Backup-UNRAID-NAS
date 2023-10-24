@@ -39,7 +39,7 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
 ![Cron](images/Cron.png)
 
-5. In the gear next to the name click on `Edit Script` and copy the script with all the variables set up. In your encripted your rclone config you must place it in the `export RCLONE_CONFIG_PASS`.
+5. In the gear icon next to the  script name click on `Edit Script` and copy the script with all the variables set up. If you encripted your rclone config you must place it in the `export RCLONE_CONFIG_PASS`.
 
 6. Then click on `RUN SCRIPT` and watch it sync to AWS. :)
 
