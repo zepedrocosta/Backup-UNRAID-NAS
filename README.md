@@ -2,7 +2,7 @@
 
 This repository contains all the scripts and the backup plan for all the files in my UNRAID NAS.
 
-### S3 Buckets
+## S3 Buckets
 
 After a lot of thought I decided to use two Amazon S3 buckets.
 
@@ -12,13 +12,13 @@ The second bucket (*ClipKiller*) is for files that I need immediate access in ca
 
 Both buckets will abort incomplete files uploads after 2 days. In case I try to upload big files in multiple chunks and the process fails or is interrupted I wont be charged for the chunks that were uploaded.
 
-### IAM User
+## IAM User
 
 I created a limited IAM user in CloudFormation with permission to upload files to both buckets.
 
 His actions include:
 
-- 's3:* MultipartUpload*' - Performing multipart uploads of objects to the S3 bucket.
+- 's3:*MultipartUpload*' - Performing multipart uploads of objects to the S3 bucket.
 - 's3:ListBucket' - Listing the contents of the bucket.
 - 's3:GetObject' - Getting individual objects from the bucket.
 - 's3:PutObject' - Putting (uploading) objects into the bucket.
@@ -27,7 +27,7 @@ His actions include:
 
 In this [`AWS CloudFormation Template`](stack.yml) there are all the resources that need to be implemented in the AWS cloud. Includes both buckets that were mentioned previously and the IAM user.
 
-## Instalation in Unraid
+## Installation in Unraid
 
 1. Install the Rclone and User Scripts plugins in the apps tab. Make sure you install the plugin and not the docker app.
 
@@ -39,59 +39,27 @@ In this [`AWS CloudFormation Template`](stack.yml) there are all the resources t
 
 ![Cron](images/Cron.png)
 
-5. In the gear icon next to the  script name click on `Edit Script` and copy the script with all the variables set up. If you encripted your rclone config you must place it in the `export RCLONE_CONFIG_PASS`.
+1. In the gear icon next to the  script name click on `Edit Script` and copy the script with all the variables set up. If you encrypted your rclone config you must place it in the `export RCLONE_CONFIG_PASS`.
 
-6. Then click on `RUN SCRIPT` and watch it sync to AWS. :)
+2. Then click on `RUN SCRIPT` and watch it sync to AWS. :)
 
 ![UserScripts](images/UserScripts.png)
-
-## Timeline
-- 02/10/2023
-  - New cron job for Knox (0 4 1,15 * *)
-
-![CronKnox](images/CronKnox.png)
-
-- 24/09/2023
-  - Final deployment and README complete.
-
-- 21/09/2023
-  - Sync script completed.
-
-- 19/09/2023
-  - First test of sync a few NAS folders to the Instant Retrival bucket.
-  - Password export on sync script.
-
-- 22/08/2023
-  - Test deployment using a single IAM user for both buckets.
-  - Both remotes used the same access key and secret access key for the IAM user.
-
-  ![1User2Buckets](images/testWith1UserTo2Buckets.png)
-
-- 20/08/2023
-  - Test deployment using WSL and Rclone for a single file.
-
-  ![WSLTest](images/WSLTestCopytos3.png)
-
-  PS: The file was uploaded to Glacier Deep Archive as was specified configuring the remote in Rclone 🎆
-
-- 19/08/2023
-  - First scripts and planning
 
 ## Biography
 
 - AWS Documentation
 
-- https://betterdev.blog/personal-backup-to-amazon-s3/
+- <https://betterdev.blog/personal-backup-to-amazon-s3/>
 
-- https://github.com/geerlingguy/my-backup-plan
+- <https://github.com/geerlingguy/my-backup-plan>
 
-- https://rclone.org/s3/#configuration
+- <https://rclone.org/s3/#configuration>
 
 ## Author
 
 José Costa - Nova School of Science and Technology
 
-josepirescosta2003@gmail.com
+<josepirescosta2003@gmail.com>
 
 [Twitter](https://twitter.com/Jos3Costa)
 
